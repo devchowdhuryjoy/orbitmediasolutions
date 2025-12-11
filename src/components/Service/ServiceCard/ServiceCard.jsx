@@ -9,6 +9,7 @@ import simg7 from '../../../assets/images/s7.webp'
 
 import { SlHome } from "react-icons/sl";
 import { RiArrowRightLine } from "react-icons/ri";
+import { div } from 'framer-motion/client'
 
 const ServiceCard = () => {
     const servicesData = [
@@ -70,6 +71,7 @@ const ServiceCard = () => {
   }
 ];
   return (
+ <>
  <div className="grid md:grid-cols-3 gap-6 justify-items-center">
       {servicesData.map((service) => (
         <div key={service.id} className="card bg-base-content w-96 shadow-sm">
@@ -81,16 +83,16 @@ const ServiceCard = () => {
             />
           </figure>
 
-          <div className="card-body flex flex-col items-center text-center">
+          <div className="card-body flex flex-col items-center ">
             <div className="card-actions justify-center mb-2">
               <SlHome className='text-white text-2xl'/>
             </div>
 
-            <h1 className='text-white text-lg md:text-xl font-semibold mb-2'>
+            <h1 className='text-center text-white text-lg md:text-xl font-semibold mb-2'>
               {service.title}
             </h1>
 
-            <p className='text-white text-sm md:text-base text-center leading-snug'>
+            <p className="text-white text-sm md:text-base text-center whitespace-normal hyphens-auto  leading-relaxed m-0 [text-justify:inter-word]">
               {service.desc}
             </p>
 
@@ -102,7 +104,13 @@ const ServiceCard = () => {
           </div>
         </div>
       ))}
+     
     </div>
+    <div className='flex items-center justify-center'>
+        <button className="cursor-pointer bg-transparent  border-2 border-violet-500 font-semibold py-3 px-8 rounded-tr-2xl shadow-md transition-all duration-300 transform hover:scale-105">View All Products</button>
+    </div>
+    </>
+    
   )
 }
 
