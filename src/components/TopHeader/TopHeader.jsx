@@ -22,7 +22,7 @@ export default function TopHeader() {
         <FaPhoneAlt className="text-black text-sm" /> 00447935390848
       </a>
       <a href="#" className="flex items-center gap-2 text-black hover:text-green-400 transition text-sm">
-        <FaWhatsapp className="text-green-400 text-sm" /> WhatsApp Sajib Khan
+        <FaWhatsapp className="text-green-400 text-sm" /> WhatsApp 
       </a>
     </div>
 
