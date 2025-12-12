@@ -9,7 +9,7 @@ import simg7 from '../../../assets/images/s7.webp'
 
 import { SlHome } from "react-icons/sl";
 import { RiArrowRightLine } from "react-icons/ri";
-import { div } from 'framer-motion/client'
+
 
 const ServiceCard = () => {
     const servicesData = [
