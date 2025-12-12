@@ -143,7 +143,7 @@ const ProductCard = () => {
                       {product.title}
                     </h1>
         
-                    <p className="text-white text-sm md:text-base text-center whitespace-normal hyphens-auto  leading-relaxed m-0 [text-justify:inter-word]">
+                    <p className="text-white text-sm md:text-base text-center whitespace-normal hyphens-auto  leading-relaxed m-0 text-truncate [text-justify:inter-word]">
                       {product.desc}
                     </p>
         

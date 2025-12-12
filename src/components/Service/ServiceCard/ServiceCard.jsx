@@ -71,44 +71,60 @@ const ServiceCard = () => {
   }
 ];
   return (
- <>
- <div className="grid md:grid-cols-3 gap-6 justify-items-center">
-      {servicesData.map((service) => (
-        <div key={service.id} className="card bg-base-content w-96 shadow-sm">
-          <figure>
-            <img
-              src={service.img}
-              alt={service.title}
-              className="w-full h-48 object-cover rounded-t-lg"
-            />
-          </figure>
+   <>
+      <div className="grid md:grid-cols-3 gap-6 justify-items-center">
+        {servicesData.map((service) => (
+          <div
+            key={service.id}
+            className="card bg-base-content w-96 shadow-sm overflow-hidden group transition-all duration-300"
+          >
+            <figure>
+              <img
+                src={service.img}
+                alt={service.title}
+                className="w-full h-48 object-cover rounded-t-lg"
+              />
+            </figure>
 
-          <div className="card-body flex flex-col items-center ">
-            <div className="card-actions justify-center mb-2">
-              <SlHome className='text-white text-2xl'/>
-            </div>
+            <div className="card-body flex flex-col items-center p-4">
+              {/* Home Icon with hover effect */}
+              <div className="card-actions justify-center mb-2">
+                <div className="p-2 rounded-full bg-transparent group-hover:bg-blue-500 transition-all duration-300">
+                  <SlHome className="text-white text-2xl group-hover:scale-125 transition-transform duration-300" />
+                </div>
+              </div>
 
-            <h1 className='text-center text-white text-lg md:text-xl font-semibold mb-2'>
-              {service.title}
-            </h1>
+              <h1 className="text-center text-white text-lg md:text-xl font-semibold mb-2">
+                {service.title}
+              </h1>
 
-            <p className="text-white text-sm md:text-base text-center whitespace-normal hyphens-auto  leading-relaxed m-0 [text-justify:inter-word]">
-              {service.desc}
-            </p>
+              {/* Description fade out on hover */}
+              <div className="w-full h-20 overflow-hidden">
+                <p className="text-white text-sm md:text-base line-clamp-3 overflow-hidden
+              group-hover:opacity-0 group-hover:-translate-y-3
+              transition-all duration-500 ease-in-out">
+                {service.desc}
+              </p>
+              </div>
 
-            <div className="card-actions justify-center mt-4">
-              <button className="btn btn-active btn-info text-white flex items-center gap-2">
-                {service.btnText} <RiArrowRightLine />
-              </button>
+              {/* Button fade in and slide up */}
+              <div className="card-actions justify-center mt-4
+                              opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0
+                              transition-all duration-500 ease-in-out">
+                <button className="btn btn-active btn-info text-white flex items-center gap-2">
+                  {service.btnText} <RiArrowRightLine />
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
-     
-    </div>
-    <div className='flex items-center justify-center'>
-        <button className="cursor-pointer bg-transparent  border-2 border-violet-500 font-semibold py-3 px-8 rounded-tr-2xl shadow-md transition-all duration-300 transform hover:scale-105">View All Products</button>
-    </div>
+        ))}
+      </div>
+
+      <div className="flex items-center justify-center mt-6">
+        <button className="cursor-pointer bg-transparent border-2 border-violet-500 font-semibold py-3 px-8 rounded-tr-2xl shadow-md transition-all duration-300 transform hover:scale-105">
+          View All Products
+        </button>
+      </div>
     </>
     
   )

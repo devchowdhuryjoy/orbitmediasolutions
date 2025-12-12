@@ -1,13 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo2 from '../../assets/logo-w.png';
 import { IoMenu, IoClose } from "react-icons/io5";
 
 const LastHeader = () => {
   const [open, setOpen] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
+
+  // Sticky effect after scrolling 80px
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 80) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <div className="bg-white sticky top-0 z-50">
-      <div className="container mx-auto flex items-center justify-between px-4 md:px-8 py-3">
+    <div className={`bg-white z-50 w-full transition-all duration-300 
+      ${isSticky ? "fixed top-0 shadow-xl" : "relative"}
+    `}>
+      <div className="container mx-auto flex items-center  px-4 md:px-8 py-3">
 
         {/* Logo */}
         <div className="flex items-center">
@@ -15,7 +32,7 @@ const LastHeader = () => {
         </div>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex items-center gap-6 bg-white px-6 py-2 rounded-full text-sm font-semibold shadow-sm">
+        <ul className="hidden md:flex items-center gap-6 bg-white px-8 py-3 rounded-full text-sm font-semibold shadow-2xl border border-gray-200 ml-28">
           <li className="text-black hover:text-purple-500 cursor-pointer transition-colors duration-200">Home</li>
           <li className="text-black hover:text-purple-500 cursor-pointer transition-colors duration-200">About</li>
           <li className="text-black hover:text-purple-500 cursor-pointer transition-colors duration-200">Products</li>
@@ -26,7 +43,7 @@ const LastHeader = () => {
           <li className="text-black hover:text-purple-500 cursor-pointer transition-colors duration-200">Contact</li>
         </ul>
 
-        {/* Mobile Hamburger / Close Icon */}
+        {/* Mobile Icon */}
         <div
           className="md:hidden text-3xl cursor-pointer text-black"
           onClick={() => setOpen(!open)}
@@ -35,9 +52,9 @@ const LastHeader = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Items */}
+      {/* Mobile Menu */}
       {open && (
-        <div className="md:hidden bg-white mt-2 rounded-lg shadow-lg py-4 px-4 animate-slide-down">
+        <div className="md:hidden bg-white mt-2 rounded-lg shadow-xl py-4 px-4 animate-slide-down border border-gray-200">
           <ul className="flex flex-col gap-3 text-center font-medium text-base">
             <li className="text-black hover:text-purple-500 cursor-pointer transition-colors duration-200">Home</li>
             <li className="text-black hover:text-purple-500 cursor-pointer transition-colors duration-200">About</li>
@@ -52,6 +69,6 @@ const LastHeader = () => {
       )}
     </div>
   );
-}
+};
 
 export default LastHeader;
