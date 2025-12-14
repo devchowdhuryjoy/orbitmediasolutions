@@ -71,57 +71,81 @@ const ServiceCard = () => {
   }
 ];
   return (
-   <>
+    <>
       <div className="grid md:grid-cols-3 gap-6 justify-items-center">
         {servicesData.map((service) => (
           <div
             key={service.id}
-            className="card bg-base-content w-96 shadow-sm overflow-hidden group transition-all duration-300"
+            className="
+              group w-96 bg-base-content shadow-md overflow-hidden
+              transition-all duration-500 ease-in-out
+              h-[340px] hover:h-[400px]
+            "
           >
-            <figure>
-              <img
-                src={service.img}
-                alt={service.title}
-                className="w-full h-48 object-cover rounded-t-lg"
-              />
-            </figure>
+            {/* Image */}
+            <img
+              src={service.img}
+              alt={service.title}
+              className="w-full h-38 object-cover"
+            />
 
-            <div className="card-body flex flex-col items-center p-4">
-              {/* Home Icon with hover effect */}
-              <div className="card-actions justify-center mb-2">
-                <div className="p-2 rounded-full bg-transparent group-hover:bg-blue-500 transition-all duration-300">
-                  <SlHome className="text-white text-2xl group-hover:scale-125 transition-transform duration-300" />
-                </div>
+            {/* Body */}
+            <div className="flex flex-col items-center px-4 pt-4">
+
+              {/* Icon */}
+              <div className="mb-2 p-2 rounded-full transition-all duration-300 group-hover:bg-blue-500">
+                <SlHome className="text-white text-xl transition-transform duration-300 group-hover:scale-110" />
               </div>
 
-              <h1 className="text-center text-white text-lg md:text-xl font-semibold mb-2">
+              {/* Title */}
+              <h2 className="text-center text-white text-base md:text-lg font-semibold mb-2 leading-tight">
                 {service.title}
-              </h1>
+              </h2>
 
-              {/* Description fade out on hover */}
-              <div className="w-full h-20 overflow-hidden">
-                <p className="text-white text-sm md:text-base line-clamp-3 overflow-hidden
-              group-hover:opacity-0 group-hover:-translate-y-3
-              transition-all duration-500 ease-in-out">
+              {/* Description */}
+              <p
+                className="
+                  text-white text-sm leading-relaxed line-clamp-3
+                  transition-all duration-300
+                  group-hover:opacity-0 group-hover:translate-y-2
+                "
+              >
                 {service.desc}
               </p>
-              </div>
 
-              {/* Button fade in and slide up */}
-              <div className="card-actions justify-center mt-4
-                              opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0
-                              transition-all duration-500 ease-in-out">
-                <button className="btn btn-active btn-info text-white flex items-center gap-2">
-                  {service.btnText} <RiArrowRightLine />
+              {/* Button */}
+              <div
+                className="
+                  mt-4 opacity-0 translate-y-4
+                  transition-all duration-500
+                  group-hover:opacity-100 group-hover:translate-y-0
+                "
+              >
+                 <button
+                  className="
+                inline-flex items-center gap-2
+                btn btn-info
+                text-white
+                text-sm font-medium
+                px-5 py-2
+                rounded-full
+                transition-all duration-300
+                
+                hover:gap-3
+              "
+                >
+                  Details <RiArrowRightLine />
                 </button>
               </div>
+
             </div>
           </div>
         ))}
       </div>
 
-      <div className="flex items-center justify-center mt-6">
-        <button className="cursor-pointer bg-transparent border-2 border-violet-500 font-semibold py-3 px-8 rounded-tr-2xl shadow-md transition-all duration-300 transform hover:scale-105">
+      {/* View All */}
+      <div className="flex justify-center mt-8">
+        <button className="border-2 border-violet-500 font-semibold py-3 px-5 rounded-tr-2xl shadow-md transition-all duration-300 hover:scale-105">
           View All Products
         </button>
       </div>

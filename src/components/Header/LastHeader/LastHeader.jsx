@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import logo2 from '../../assets/logo-w.png';
+import logo2 from '../../../assets/logo-w.png';
 import { IoMenu, IoClose } from "react-icons/io5";
 
 const LastHeader = () => {

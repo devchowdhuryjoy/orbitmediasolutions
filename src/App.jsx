@@ -1,23 +1,11 @@
-
-import './App.css'
-import Footer from './components/Footer/Footer'
-import Hero from './components/Hero/Hero'
-import Navbar from './components/Navbar/Navbar'
-import Product from './components/Product/Product'
-import Service from './components/Service/Service'
+import "./App.css";
 
 function App() {
-  
-
   return (
     <>
-      <Navbar/>  
-      <Hero/> 
-      <Service/>
-      <Product/>
-      <Footer/>
+      <h1>Vite + React</h1>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,9 +1,9 @@
 import React from 'react'
-import TopHeader from '../TopHeader/TopHeader'
-import MidHeader from '../MidHeader/MidHeader'
-import LastHeader from '../LastHeader/LastHeader'
+import TopHeader from './TopHeader/TopHeader'
+import MidHeader from './MidHeader/MidHeader'
+import LastHeader from './LastHeader/LastHeader'
 
-const Navbar = () => {
+const Header = () => {
   return (
     <div className="w-full bg-white dark:bg-[#0d0c21] text-black dark:text-white">
         <TopHeader/>
@@ -13,4 +13,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default Header

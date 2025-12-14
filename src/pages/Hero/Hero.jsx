@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { IoArrowBack, IoArrowForward } from "react-icons/io5";
 import { GoDot, GoDotFill } from "react-icons/go";
-import video1 from "../../../public/videos/video1.mp4";
-import video2 from "../../../public/videos/video2.mp4";
+import video1 from "../../assets/videos/video1.mp4"
+import video2 from "../../assets/videos/video2.mp4"
 
 const Hero = () => {
   const videos = [
