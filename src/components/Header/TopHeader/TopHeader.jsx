@@ -1,50 +1,77 @@
-import { 
-  FaEnvelope, 
-  FaPhoneAlt, 
-  FaWhatsapp, 
-  FaFacebookF, 
-  FaYoutube, 
-  FaInstagram, 
-  FaLinkedinIn 
+import {
+  FaEnvelope,
+  FaPhoneAlt,
+  FaWhatsapp,
+  FaFacebookF,
+  FaYoutube,
+  FaInstagram,
+  FaLinkedinIn,
 } from "react-icons/fa";
 
 export default function TopHeader() {
   return (
-   <div className="w-full bg-gray-100 dark:bg-[#111] text-black dark:text-white py-2">
-  <div className="container mx-auto flex flex-wrap md:flex-nowrap items-center justify-between gap-2">
-    
-    {/* Left Section */}
-    <div className="flex flex-wrap items-center gap-2 md:gap-4">
-      <a href="mailto:info@theorbit.one" className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 transition px-3 py-1 rounded-full text-sm text-white">
-        <FaEnvelope className="text-white text-sm" /> info@theorbit.one
-      </a>
-      <a href="tel:00447935390848" className="flex items-center gap-2 text-black hover:text-purple-400 transition text-sm">
-        <FaPhoneAlt className="text-black text-sm" /> 00447935390848
-      </a>
-      <a href="#" className="flex items-center gap-2 text-black hover:text-green-400 transition text-sm">
-        <FaWhatsapp className="text-green-400 text-sm" /> WhatsApp 
-      </a>
-    </div>
+    <div className="bg-gray-100 dark:bg-[#111] text-black dark:text-white">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2">
+        <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+          {/* Left Section */}
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+            {/* Email */}
+            <a
+              href="mailto:info@theorbit.one"
+              className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 transition px-3 py-1 rounded-full text-xs sm:text-sm text-white"
+            >
+              <FaEnvelope />
+              <span className="hidden sm:inline">info@theorbit.one</span>
+            </a>
 
-    {/* Right Section */}
-    <div className="flex flex-wrap items-center gap-2 md:gap-4 text-sm">
-      <div className="flex items-center gap-3">
-        <a href="#" className="text-blue-400 hover:text-purple-400"><FaFacebookF /></a>
-        <a href="#" className="text-red-500 hover:text-purple-400"><FaYoutube /></a>
-        <a href="#" className="text-pink-500 hover:text-purple-400"><FaInstagram /></a>
-        <a href="#" className="text-blue-600 hover:text-purple-400"><FaLinkedinIn /></a>
+            {/* Phone */}
+            <a
+              href="tel:00447935390848"
+              className="flex items-center gap-2 text-xs sm:text-sm hover:text-purple-500"
+            >
+              <FaPhoneAlt />
+              <span className="hidden md:inline">00447935390848</span>
+            </a>
+
+            {/* WhatsApp */}
+            <a
+              href="#"
+              className="flex items-center gap-2 text-xs sm:text-sm hover:text-green-500"
+            >
+              <FaWhatsapp className="text-green-500" />
+              <span className="hidden lg:inline">WhatsApp</span>
+            </a>
+          </div>
+
+          {/* Right Section */}
+          <div className="flex items-center justify-between md:justify-end gap-3">
+            {/* Social Icons */}
+            <div className="flex items-center gap-3">
+              <a className="hover:text-purple-500 text-blue-500" href="#">
+                <FaFacebookF />
+              </a>
+              <a className="hover:text-purple-500 text-red-500" href="#">
+                <FaYoutube />
+              </a>
+              <a className="hover:text-purple-500 text-pink-500" href="#">
+                <FaInstagram />
+              </a>
+              <a className="hover:text-purple-500 text-blue-600" href="#">
+                <FaLinkedinIn />
+              </a>
+            </div>
+
+            {/* Language */}
+            <select className="bg-white dark:bg-[#111] text-black dark:text-white border border-gray-300 dark:border-gray-600 rounded-md px-2 py-1 text-xs sm:text-sm">
+              <option>English</option>
+              <option>Bangla</option>
+              <option>Hindi</option>
+              <option>French</option>
+              <option>Spanish</option>
+            </select>
+          </div>
+        </div>
       </div>
-      <select className="bg-white text-black border border-gray-300 rounded-md px-2 py-1 cursor-pointer">
-        <option>English</option>
-        <option>Bangla</option>
-        <option>Hindi</option>
-        <option>French</option>
-        <option>Spanish</option>
-      </select>
     </div>
-
-  </div>
-</div>
-
   );
 }

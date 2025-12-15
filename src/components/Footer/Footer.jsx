@@ -1,6 +1,7 @@
 import React from "react";
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import logo from '../../assets/logo-w.png';
+import { Link } from "react-router";
 const Footer = () => {
   return (
     <footer className="bg-white ">
@@ -41,16 +42,16 @@ const Footer = () => {
 
           <div className="grid grid-cols-2 gap-4 text-gray-700">
             <div className="space-y-2">
-              <a href="/about" className="hover:text-violet-500 block">About</a>
-              <a href="/blog" className="hover:text-violet-500 block">Blog</a>
-              <a href="/career" className="hover:text-violet-500 block">Career</a>
-              <a href="/contact" className="hover:text-violet-500 block">Contact</a>
+              <Link to="/about" className="hover:text-violet-500 block">About</Link>
+              <Link to="/blog" className="hover:text-violet-500 block">Blog</Link>
+              <Link to="/career" className="hover:text-violet-500 block">Career</Link>
+              <Link to="/contact" className="hover:text-violet-500 block">Contact</Link>
             </div>
 
             <div className="space-y-2">
-              <a href="/services" className="hover:text-violet-500 block">All Services</a>
-              <a href="/products" className="hover:text-violet-500 block">All Products</a>
-              <a href="/partner" className="hover:text-violet-500 block">Partner</a>
+              <Link to="/services" className="hover:text-violet-500 block">All Services</Link>
+              <Link to="/products" className="hover:text-violet-500 block">All Products</Link>
+              <Link to="/partner" className="hover:text-violet-500 block">Partner</Link>
             </div>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { SlHome } from "react-icons/sl";
 import { RiArrowRightLine } from "react-icons/ri";
 import pimg1 from "../../../assets/images/p1.webp";
@@ -13,8 +14,10 @@ import pimg10 from "../../../assets/images/p11.webp";
 import pimg11 from "../../../assets/images/p11.webp";
 import pimg12 from "../../../assets/images/p12.webp";
 import pimg13 from "../../../assets/images/p13.webp";
+import RainbowGradientButton from "../../Button/RainbowGradientButton";
 
 const ProductCard = () => {
+  const [activeId, setActiveId] = useState(null);
   const productsData = [
     {
       id: 1,
@@ -123,80 +126,90 @@ const ProductCard = () => {
   ];
   return (
     <>
-      <div className="grid md:grid-cols-3 gap-6 justify-items-center">
-        {productsData.map((product) => (
-          <div
-            key={product.id}
-            className="
-              group w-96 bg-base-content shadow-md overflow-hidden
-              transition-all duration-500 ease-in-out
-              h-[340px] hover:h-[400px]
-            "
-          >
-            {/* Image */}
-            <img
-              src={product.img}
-              alt={product.title}
-              className="w-full h-38 object-cover"
-            />
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
+        {productsData.map((product) => {
+          const isActive = activeId === product.id;
 
-            {/* Body */}
-            <div className="flex flex-col items-center px-4 pt-4">
-              {/* Icon */}
-              <div className="mb-2 p-2 rounded-full transition-all duration-300 group-hover:bg-blue-500">
-                <SlHome className="text-white text-xl transition-transform duration-300 group-hover:scale-110" />
-              </div>
+          return (
+            <div
+              key={product.id}
+              onClick={() => setActiveId(isActive ? null : product.id)}
+              className={`
+                    group w-full max-w-[24rem]
+                    bg-base-content shadow-md overflow-hidden
+                    transition-all duration-500 ease-in-out
+                    cursor-pointer
+                    h-[340px]
+                    hover:h-[400px]
+                    ${isActive ? "h-[400px]" : ""}
+                  `}
+            >
+              {/* Image */}
+              <img
+                src={product.img}
+                alt={product.title}
+                className="w-full h-40 object-cover"
+              />
 
-              {/* Title */}
-              <h2 className="text-center text-white text-base md:text-lg font-semibold mb-2 leading-tight">
-                {product.title}
-              </h2>
-
-              {/* Description */}
-              <p
-                className="
-                  text-white text-sm leading-relaxed line-clamp-3
-                  transition-all duration-300
-                  group-hover:opacity-0 group-hover:translate-y-2
-                "
-              >
-                {product.desc}
-              </p>
-
-              {/* Button */}
-              <div
-                className="
-                  mt-4 opacity-0 translate-y-4
-                  transition-all duration-500
-                  group-hover:opacity-100 group-hover:translate-y-0
-                "
-              >
-                <button
-                  className="
-                inline-flex items-center gap-2
-                btn btn-info
-                text-white
-                text-sm font-medium
-                px-5 py-2
-                rounded-full
-                transition-all duration-300
-                
-                hover:gap-3
-              "
+              <div className="flex flex-col items-center px-4 pt-4">
+                {/* Icon */}
+                <div
+                  className={`
+                        mb-2 p-2 rounded-full transition-all duration-300
+                        ${isActive ? "bg-blue-500" : "group-hover:bg-blue-500"}
+                      `}
                 >
-                  Details <RiArrowRightLine />
-                </button>
+                  <SlHome
+                    className={`
+                          text-white text-xl transition-transform duration-300
+                          ${isActive ? "scale-110" : "group-hover:scale-110"}
+                        `}
+                  />
+                </div>
+
+                {/* Title */}
+                <h2 className="text-center text-white text-base md:text-md font-semibold mb-2">
+                  {product.title}
+                </h2>
+
+                {/* Description */}
+                <p
+                  className={`
+                        text-white text-sm leading-relaxed line-clamp-3
+                        transition-all duration-300
+                        ${
+                          isActive
+                            ? "opacity-0 translate-y-2"
+                            : "group-hover:opacity-0 group-hover:translate-y-2"
+                        }
+                      `}
+                >
+                  {product.desc}
+                </p>
+
+                {/* Button */}
+                <div
+                  className={`
+                        mt-4 transition-all duration-500
+                        ${
+                          isActive
+                            ? "opacity-100 translate-y-0"
+                            : "opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0"
+                        }
+                      `}
+                >
+                  <button className="inline-flex items-center gap-2 btn btn-info text-white text-sm px-5 py-2 rounded-full">
+                    Details <RiArrowRightLine />
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
-      {/* View All */}
       <div className="flex justify-center mt-8">
-        <button className="border-2 border-violet-500 font-semibold py-3 px-5 rounded-tr-2xl shadow-md transition-all duration-300 hover:scale-105">
-          View All Products
-        </button>
+        <RainbowGradientButton>View All Products</RainbowGradientButton>
       </div>
     </>
   );

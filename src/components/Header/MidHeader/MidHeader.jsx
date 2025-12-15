@@ -1,16 +1,18 @@
-import React from 'react'
+import React from "react";
 
 const MidHeader = () => {
   return (
-   <div className="w-full bg-white py-2">
-  <marquee behavior="" direction="">
-    <h3 className="text-center text-lg md:text-2xl font-semibold text-black dark:text-white">
-      We are delighted to announce that we are opening a new branch in Liverpool soon!
-    </h3>
-  </marquee>
-</div>
+    <div className="w-full bg-white dark:bg-[#0d0c21] overflow-hidden">
+      <div className="relative w-full">
+        <div className="animate-marquee whitespace-nowrap py-2">
+          <span className="inline-block px-6 text-sm sm:text-base md:text-lg font-semibold text-black dark:text-white">
+            We are delighted to announce that we are opening a new branch in
+            Liverpool soon!
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-  )
-}
-
-export default MidHeader
+export default MidHeader;
