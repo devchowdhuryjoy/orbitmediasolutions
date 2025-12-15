@@ -55,7 +55,7 @@ const ProductCard = () => {
       id: 5,
       img: pimg5,
       icon: "SlHome",
-      title: "Power Your UK Business with Smarter POS Software",
+      title: "All-in-One Hotel Management Software in UK",
       desc: "Looking for the ultimate hotel management software UK? Orbit Media Solutions helps hoteliers streamline operations, increase revenue, and create exceptional guest experiences. Trusted by..",
       btnText: "Details",
     },
