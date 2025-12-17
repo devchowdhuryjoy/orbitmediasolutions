@@ -7,6 +7,7 @@ const Product = () => {
     <div className="container mx-auto bg-white dark:bg-[#0d0c21] text-black dark:text-white mb-10">
         <ProductContent/>
         <ProductCard/>
+        
     </div>
   )
 }
