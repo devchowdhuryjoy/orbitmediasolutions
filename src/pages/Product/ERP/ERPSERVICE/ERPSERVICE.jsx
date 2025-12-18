@@ -4,8 +4,8 @@ import e1 from '../../../../assets/products/e1.png'
 
 const ERPSERVICE = () => {
   return (
-    <div className='bg-white text-[#0b0b0f] py-16 px-4 md:px-10'>
-      <div className='container mx-auto flex flex-col md:flex-row items-center justify-between gap-12'>
+    <div className='bg-white text-[#0b0b0f] py-16 px-4 md:px-10 container mx-auto'>
+      <div className=' flex flex-col md:flex-row items-center justify-between gap-12'>
         
         <div className='flex-1 text-left'>
           <h1 className='text-5xl md:text-7xl font-bold leading-tight mb-6'>
@@ -30,7 +30,7 @@ const ERPSERVICE = () => {
             <img 
               src={e1} 
               alt="ERP Software Services" 
-              className='w-full max-w-xl rounded-sm shadow-2xl border border-gray-800'
+              className='w-full max-w-xl rounded-sm shadow-2x'
             />
           </div>
         </div>
