@@ -6,6 +6,9 @@ import Home from '../pages/Home/Home';
 import About from '../pages/About/About';
 import Product from '../pages/Product/Product';
 import ERP from '../pages/Product/ERP/ERP';
+import Service from '../pages/Service/Service';
+import WebDesign from '../pages/Service/WEB/WebDesign/WebDesign';
+import Partner from '../pages/Partner/Partner';
 
 
 
@@ -23,6 +26,9 @@ export const router = createBrowserRouter([
       },
       // { path: "/product/erp-software", Component: ERP },
       { path: "/product/:sys", Component: ERP },
+      { path: "/all-service", Component: Service },
+      { path: "/service/:sys", Component: WebDesign },
+      { path: "/partners", Component: Partner },
     ]
   },
 ]);

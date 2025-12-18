@@ -27,9 +27,24 @@ const PortalDropdown = ({ open, position, children }) => {
 const LastHeader = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileProductOpen, setMobileProductOpen] = useState(false);
+  const [mobileServiceOpen, setMobileServiceOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [dropdownPos, setDropdownPos] = useState({ top: 0, left: 0, width: 288 });
+  const [dropdownPos, setDropdownPos] = useState({
+    top: 0,
+    left: 0,
+    width: 288,
+  });
+  // service
+  const [serviceDropdownOpen, setServiceDropdownOpen] = useState(false);
+  const [serviceDropdownPos, setServiceDropdownPos] = useState({
+    top: 0,
+    left: 0,
+    width: 288,
+  });
+
+  const serviceTriggerRef = useRef(null);
+  // service
 
   const headerRef = useRef(null);
   const triggerRef = useRef(null);
@@ -37,14 +52,27 @@ const LastHeader = () => {
 
   /* ---------- Sticky + Position Update ---------- */
   useEffect(() => {
-    if (headerRef.current) setHeaderHeight(headerRef.current.offsetHeight);
+    if (headerRef.current) {
+      setHeaderHeight(headerRef.current.offsetHeight);
+    }
 
     const handleScroll = () => {
       setIsSticky(window.scrollY > 80);
 
+      // Products dropdown position
       if (dropdownOpen && triggerRef.current) {
         const rect = triggerRef.current.getBoundingClientRect();
         setDropdownPos({
+          top: rect.bottom + window.scrollY,
+          left: rect.left,
+          width: 288,
+        });
+      }
+
+      // Service dropdown position
+      if (serviceDropdownOpen && serviceTriggerRef.current) {
+        const rect = serviceTriggerRef.current.getBoundingClientRect();
+        setServiceDropdownPos({
           top: rect.bottom + window.scrollY,
           left: rect.left,
           width: 288,
@@ -54,11 +82,14 @@ const LastHeader = () => {
 
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleScroll);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
     };
-  }, [dropdownOpen]);
+  }, [dropdownOpen, serviceDropdownOpen]);
+
+  /* ---------- Sticky + Position Update ---------- */
 
   /* ---------- Products Dropdown Data ---------- */
   const productsDropdown = [
@@ -71,8 +102,27 @@ const LastHeader = () => {
     { name: "Hotel Management Software", slug: "hotel-management" },
     { name: "Education Management Software", slug: "education-management" },
     { name: "Law Firm Management Software", slug: "law-firm-management" },
-    { name: "Restaurant / Takeaway Management Software", slug: "restaurant-management" },
+    {
+      name: "Restaurant / Takeaway Management Software",
+      slug: "restaurant-management",
+    },
     { name: "Pharmacy Management", slug: "pharmacy-management" },
+  ];
+  /* ---------- Service Dropdown Data ---------- */
+  const servicesDropdown = [
+    { name: "Web Design And Development", slug: "web-design-development" },
+    {
+      name: "E-Commerce (Single & Multi Vendor)",
+      slug: "e-commerce-single-multi-vendor",
+    },
+    { name: "Digital Marketing", slug: "digital-marketing" },
+    {
+      name: "Mobile & Desktop Application",
+      slug: "mobile-desktop-application",
+    },
+    { name: "Customed Software Solution", slug: "customed-software-solution" },
+    { name: "News Portal", slug: "news-portal" },
+    { name: "Blog Site", slug: "blog-site" },
   ];
 
   return (
@@ -119,8 +169,28 @@ const LastHeader = () => {
                   Products <IoChevronDown size={14} />
                 </Link>
               </li>
+              {/* Services (Hover Dropdown) */}
+              {/* <LinkItem to="/all-service" label="Service" /> */}
+              <li
+                ref={serviceTriggerRef}
+                className="py-2 cursor-pointer flex items-center gap-1 text-gray-600 dark:text-gray-200 hover:text-purple-500"
+                onMouseEnter={() => {
+                  const rect =
+                    serviceTriggerRef.current.getBoundingClientRect();
+                  setServiceDropdownPos({
+                    top: rect.bottom + window.scrollY,
+                    left: rect.left,
+                    width: 288,
+                  });
+                  setServiceDropdownOpen(true);
+                }}
+                onMouseLeave={() => setServiceDropdownOpen(false)}
+              >
+                <Link to="/all-service" className="flex items-center gap-1">
+                  Service <IoChevronDown size={14} />
+                </Link>
+              </li>
 
-              <LinkItem to="/all-service" label="Service" />
               <LinkItem to="/partners" label="Become a Partner" />
               <LinkItem to="/blog" label="Blog" />
               <LinkItem to="/career" label="Career" />
@@ -157,13 +227,39 @@ const LastHeader = () => {
           ))}
         </ul>
       </PortalDropdown>
+      <PortalDropdown open={serviceDropdownOpen} position={serviceDropdownPos}>
+        <ul
+          className="bg-white dark:bg-[#0d0c21] shadow-2xl rounded-lg py-4 border border-gray-100 dark:border-gray-800"
+          onMouseEnter={() => setServiceDropdownOpen(true)}
+          onMouseLeave={() => setServiceDropdownOpen(false)}
+        >
+          {servicesDropdown.map((item) => (
+            <li key={item.slug}>
+              <Link
+                to={`/service/${item.slug}`}
+                className="block px-6 py-2 text-gray-700 dark:text-gray-200 hover:bg-purple-50 dark:hover:bg-purple-900/30 hover:text-purple-600"
+              >
+                {item.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </PortalDropdown>
 
       {/* ---------- Mobile Menu ---------- */}
       {mobileOpen && (
         <div className="md:hidden fixed top-[72px] left-0 w-full bg-white dark:bg-[#0d0c21] z-99999 shadow-xl">
           <ul className="flex flex-col divide-y divide-gray-200 dark:divide-gray-800 text-sm font-semibold">
-            <MobileLink to="/" label="Home" close={() => setMobileOpen(false)} />
-            <MobileLink to="/about" label="About" close={() => setMobileOpen(false)} />
+            <MobileLink
+              to="/"
+              label="Home"
+              close={() => setMobileOpen(false)}
+            />
+            <MobileLink
+              to="/about"
+              label="About"
+              close={() => setMobileOpen(false)}
+            />
 
             {/* Mobile Products Accordion */}
             <li>
@@ -191,11 +287,56 @@ const LastHeader = () => {
               )}
             </li>
 
-            <MobileLink to="/all-service" label="Service" close={() => setMobileOpen(false)} />
-            <MobileLink to="/partners" label="Become a Partner" close={() => setMobileOpen(false)} />
-            <MobileLink to="/blog" label="Blog" close={() => setMobileOpen(false)} />
-            <MobileLink to="/career" label="Career" close={() => setMobileOpen(false)} />
-            <MobileLink to="/contact" label="Contact" close={() => setMobileOpen(false)} />
+            {/* <MobileLink
+              to="/all-service"
+              label="Service"
+              close={() => setMobileOpen(false)}
+            /> */}
+            <li>
+  <button
+    className="w-full flex justify-between items-center px-6 py-4"
+    onClick={() => setMobileServiceOpen(!mobileServiceOpen)}
+  >
+    Service <IoChevronDown />
+  </button>
+
+  {mobileServiceOpen && (
+    <ul className="bg-gray-50 dark:bg-[#14132f]">
+      {servicesDropdown.map((item) => (
+        <li key={item.slug}>
+          <Link
+            to={`/service/${item.slug}`}
+            onClick={() => setMobileOpen(false)}
+            className="block px-10 py-3 text-sm text-gray-600 dark:text-gray-300"
+          >
+            {item.name}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  )}
+</li>
+
+            <MobileLink
+              to="/partners"
+              label="Become a Partner"
+              close={() => setMobileOpen(false)}
+            />
+            <MobileLink
+              to="/blog"
+              label="Blog"
+              close={() => setMobileOpen(false)}
+            />
+            <MobileLink
+              to="/career"
+              label="Career"
+              close={() => setMobileOpen(false)}
+            />
+            <MobileLink
+              to="/contact"
+              label="Contact"
+              close={() => setMobileOpen(false)}
+            />
           </ul>
         </div>
       )}
@@ -206,7 +347,10 @@ const LastHeader = () => {
 /* ---------- Helpers ---------- */
 const LinkItem = ({ to, label }) => (
   <li>
-    <Link to={to} className="text-gray-600 dark:text-gray-200 hover:text-purple-500">
+    <Link
+      to={to}
+      className="text-gray-600 dark:text-gray-200 hover:text-purple-500"
+    >
       {label}
     </Link>
   </li>
