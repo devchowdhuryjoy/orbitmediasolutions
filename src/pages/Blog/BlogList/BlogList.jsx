@@ -4,6 +4,8 @@ import BlogCard from "../BlogCard/BlogCard";
 const blogData = [
   {
     id: 1,
+    category: "Web Development",
+    date: "Dec 20, 2025",
     title: "Modern Web Design",
     description: "Learn the fundamentals of modern UI/UX design.",
     image:
@@ -11,6 +13,8 @@ const blogData = [
   },
   {
     id: 2,
+    category: "Web Development",
+    date: "Dec 20, 2025",
     title: "React Best Practices",
     description: "Write clean and scalable React applications.",
     image:
@@ -18,6 +22,8 @@ const blogData = [
   },
   {
     id: 3,
+    category: "Web Development",
+    date: "Dec 20, 2025",
     title: "Tailwind CSS Tips",
     description: "Speed up your workflow with Tailwind CSS.",
     image:
@@ -25,6 +31,8 @@ const blogData = [
   },
   {
     id: 4,
+    category: "Web Development",
+    date: "Dec 20, 2025",
     title: "JavaScript Performance",
     description: "Optimize JS code for better performance.",
     image:
@@ -32,6 +40,8 @@ const blogData = [
   },
   {
     id: 5,
+    category: "Web Development",
+    date: "Dec 20, 2025",
     title: "Frontend Architecture",
     description: "Build scalable frontend architectures.",
     image:
@@ -39,6 +49,8 @@ const blogData = [
   },
   {
     id: 6,
+    category: "Web Development",
+    date: "Dec 20, 2025",
     title: "UI Component Design",
     description: "Design reusable UI components.",
     image:
@@ -46,6 +58,8 @@ const blogData = [
   },
   {
     id: 7,
+    category: "Web Development",
+    date: "Dec 20, 2025",
     title: "Accessibility Matters",
     description: "Make your website accessible to everyone.",
     image:
@@ -53,6 +67,8 @@ const blogData = [
   },
   {
     id: 8,
+    category: "Web Development",
+    date: "Dec 20, 2025",
     title: "Web Animations",
     description: "Add smooth animations to your UI.",
     image:
@@ -67,8 +83,10 @@ const BlogList = () => {
         {blogData.map((blog) => (
           <BlogCard
             key={blog.id}
+            category={blog.category}
+            date={blog.date}
             image={blog.image}
-            title={blog.title}
+            // title={blog.title}
             description={blog.description}
           />
         ))}

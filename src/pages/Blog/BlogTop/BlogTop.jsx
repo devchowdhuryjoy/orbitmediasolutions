@@ -58,7 +58,7 @@ const BlogTop = () => {
         ))}
 
         {/* Search Bar */}
-        <div className="ml-auto flex items-center h-12 w-full sm:w-auto max-w-md shadow-sm">
+        <div className="ml-auto flex items-center h-12 w-full sm:w-auto max-w-md ">
           <input
             type="text"
             placeholder="Search blog posts..."

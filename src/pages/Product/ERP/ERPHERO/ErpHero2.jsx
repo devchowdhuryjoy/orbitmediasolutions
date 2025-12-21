@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+// import { motion, useInView } from "framer-motion";
 import erphero2 from "../../../../assets/products/ERPHero2.webp";
 
 const steps = [
@@ -44,9 +44,7 @@ const ErpHero2 = () => {
               <motion.li
                 key={index}
                 animate={
-                  isInView
-                    ? { opacity: 1, x: 0 }
-                    : { opacity: 0, x: -20 }
+                  isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
                 }
                 transition={{ delay: index * 0.1 }}
                 className="text-base md:text-lg"
@@ -57,7 +55,8 @@ const ErpHero2 = () => {
           </ul>
 
           <p className="mt-6 text-sm md:text-base text-gray-200">
-            We provide secure data migration and backup with every implementation.
+            We provide secure data migration and backup with every
+            implementation.
           </p>
         </motion.div>
       </div>
