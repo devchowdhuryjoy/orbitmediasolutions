@@ -12,6 +12,7 @@ import Partner from "../pages/Partner/Partner";
 import Blog from "../pages/Blog/Blog";
 import CareerPage from "../pages/career/CareerPage/CareerPage";
 import ContactPage from "../pages/contact/ContactPage/ContactPage";
+import BlogDetails from "../pages/Blog/BlogDetails/BlogDetails";
 
 export const router = createBrowserRouter([
   {
@@ -30,7 +31,10 @@ export const router = createBrowserRouter([
       { path: "/all-service", Component: Service },
       { path: "/service/:sys", Component: WebDesign },
       { path: "/partners", Component: Partner },
-      { path: "/blog", Component: Blog },
+      { path: "/blog", children: [
+          { index: true, Component: Blog },           // /blog
+          { path: ":slug", Component: BlogDetails },  // /blog/:slug
+        ], },
       { path: "/career", Component: CareerPage },
       { path: "/contact", Component: ContactPage },
     ],
