@@ -7,9 +7,10 @@ const blogData = [
     category: "Web Development",
     date: "Dec 20, 2025",
     title: "Modern Web Design",
-    description: "Learn the fundamentals of modern UI/UX design.",
+    description:
+      "Pharmacy Management Software UK: The Key to Faster, Safer, and Smarter Pharmacy Operations",
     image:
-      "https://plus.unsplash.com/premium_photo-1765228499795-e58288bc382b?q=80&w=725&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://theorbit.one/uploads/blogs/banner_images/banner_1766316141_Pharmacy%20Blog.png",
   },
   {
     id: 2,

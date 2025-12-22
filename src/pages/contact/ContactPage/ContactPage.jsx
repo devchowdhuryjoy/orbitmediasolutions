@@ -1,11 +1,15 @@
 import React from "react";
 import ContactForm from "../ContactForm/ContactForm";
 import OfficeInfo from "../OfficeInfo/OfficeInfo";
+import ContactHero from "../ContactHero/ContactHero";
+import ContactHero2 from "../ContactHero/ContactHero2";
+
 
 const ContactPage = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 py-16">
-      <div className="grid lg:grid-cols-3 gap-8 items-stretch">
+    <div className="">
+      <ContactHero />
+      <div className="max-w-7xl mx-auto px-4 py-16 grid lg:grid-cols-3 gap-8 items-stretch">
         {/* Form */}
         <div className="lg:col-span-2 h-full">
           <ContactForm />
@@ -16,6 +20,7 @@ const ContactPage = () => {
           <OfficeInfo />
         </div>
       </div>
+      <ContactHero2 />
     </div>
   );
 };

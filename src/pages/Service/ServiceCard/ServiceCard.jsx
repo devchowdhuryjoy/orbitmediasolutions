@@ -10,6 +10,7 @@ import simg7 from "../../../assets/images/s7.webp";
 import { SlHome } from "react-icons/sl";
 import { RiArrowRightLine } from "react-icons/ri";
 import RainbowGradientButton from "../../Button/RainbowGradientButton";
+import { Link } from "react-router";
 
 const ServiceCard = () => {
   const [activeId, setActiveId] = useState(null);
@@ -19,42 +20,49 @@ const ServiceCard = () => {
       id: 1,
       img: simg1,
       title: "Web Design And Development Solutions",
+      slug: "web-design-development",
       desc: "At Orbit Media Solutions, we specialize in designing and developing bespoke, high-performance websites and web applications that not only engage users but also deliver seamless experiences across all.",
     },
     {
       id: 2,
       img: simg2,
       title: "E-Commerce Website Development",
+      slug: "e-commerce-single-multi-vendor",
       desc: "Whether you want a single vendor online store or a full multi-vendor marketplace like Amazon, Etsy, or eBay, Orbit Media Solutions helps UK businesses launch high-performance e-commerce platforms.",
     },
     {
       id: 3,
       img: simg3,
       title: "Digital Marketing",
+      slug: "digital-marketing",
       desc: "Want more leads, higher conversions, and increased revenue? That’s exactly what Orbit Media Solutions delivers.",
     },
     {
       id: 4,
       img: simg4,
       title: "News Portal Development",
+      slug: "news-portal",
       desc: "We build fast, secure and engaging news portal websites for digital publishers and media organisations.",
     },
     {
       id: 5,
       img: simg5,
       title: "Mobile & Desktop App Development",
+      slug: "mobile-desktop-application",
       desc: "Powerful, secure, and scalable mobile and desktop applications for modern businesses.",
     },
     {
       id: 6,
       img: simg6,
       title: "Custom Software Development Services",
+      slug: "customed-software-solution",
       desc: "Custom software solutions that streamline operations and drive growth.",
     },
     {
       id: 7,
       img: simg7,
       title: "Blog Site Development",
+      slug: "blog-site",
       desc: "High-performance blog websites that rank on Google and convert readers.",
     },
   ];
@@ -133,9 +141,11 @@ const ServiceCard = () => {
                     }
                   `}
                 >
-                  <button className="inline-flex items-center gap-2 btn btn-info text-white text-sm px-5 py-2 rounded-full">
-                    Details <RiArrowRightLine />
-                  </button>
+                  <Link to={`/service/${service.slug}`}>
+                    <button className="inline-flex items-center gap-2 btn btn-info text-white text-sm px-5 py-2 rounded-full">
+                      Details <RiArrowRightLine />
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>

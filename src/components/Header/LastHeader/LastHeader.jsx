@@ -98,7 +98,7 @@ const LastHeader = () => {
     { name: "Inventory Management Software", slug: "inventory-management" },
     { name: "Accountant Software", slug: "accountant-software" },
     { name: "Payroll", slug: "payroll" },
-    { name: "POS", slug: "pos" },
+    { name: "POS", slug: "pos-software" },
     { name: "Hotel Management Software", slug: "hotel-management" },
     { name: "Education Management Software", slug: "education-management" },
     { name: "Law Firm Management Software", slug: "law-firm-management" },

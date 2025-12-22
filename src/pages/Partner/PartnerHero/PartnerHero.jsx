@@ -29,7 +29,7 @@ const PartnerHero = () => {
                 </p>
     
                 <div className="card-actions justify-center">
-                  <RainbowGradientButton />
+                  <RainbowGradientButton>Get in Touch</RainbowGradientButton>
                 </div>
               </div>
             </div>

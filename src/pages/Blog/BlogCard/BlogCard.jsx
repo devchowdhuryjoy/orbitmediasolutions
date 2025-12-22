@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 const BlogCard = ({ image, title, description, category, date }) => {
   return (
@@ -13,7 +14,7 @@ const BlogCard = ({ image, title, description, category, date }) => {
       </div>
 
       {/* Content Container */}
-      <div className="p-5 flex flex-col flex-grow">
+      <div className="p-5 flex flex-col grow">
         {/* Category & Date Meta */}
         <div className="flex justify-between items-center mb-3">
           <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500">
@@ -25,9 +26,12 @@ const BlogCard = ({ image, title, description, category, date }) => {
         </div>
 
         {/* Description */}
-        <p className="text-gray-600 text-sm leading-relaxed mb-6 grow">
+        <Link
+          to="/pharmacy"
+          className="text-gray-600 text-sm leading-relaxed mb-6 grow hover:text-blue-600 transition-colors"
+        >
           {description}
-        </p>
+        </Link>
 
         {/* Footer / Read More */}
         <div className="mt-auto pt-4">

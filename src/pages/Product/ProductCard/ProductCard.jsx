@@ -15,6 +15,7 @@ import pimg11 from "../../../assets/images/p11.webp";
 import pimg12 from "../../../assets/images/p12.webp";
 import pimg13 from "../../../assets/images/p13.webp";
 import RainbowGradientButton from "../../Button/RainbowGradientButton";
+import { Link } from "react-router";
 
 const ProductCard = () => {
   const [activeId, setActiveId] = useState(null);
@@ -24,6 +25,7 @@ const ProductCard = () => {
       img: pimg1,
       icon: "SlHome",
       title: "ERP Software Services UK",
+      slug: "erp-software",
       desc: "Orbit Media Solutions provides modern ERP (Enterprise Resource Planning) Software Services to help UK businesses streamline operations, automate processes, reduce cost, and gain real-time.",
       btnText: "Details",
     },
@@ -32,6 +34,7 @@ const ProductCard = () => {
       img: pimg2,
       icon: "SlHome",
       title: "HR Management Software in the UK",
+      slug: "hr-management",
       desc: "Orbit Media Solutions brings you a complete, cloud-based Human Resources Management (HRM) Software designed specifically for UK companies, including SMEs, startups, and growing organisations..",
       btnText: "Details",
     },
@@ -40,6 +43,7 @@ const ProductCard = () => {
       img: pimg3,
       icon: "SlHome",
       title: "Smart Cloud Inventory Control",
+       slug: "inventory-management",
       desc: "Managing stock shouldn’t be complicated. If you’re dealing with overstocking, stockouts, messy spreadsheets, or multiple locations, it’s time for a smarter solution. Orbit’s cloud-based inventory.",
       btnText: "Details",
     },
@@ -48,6 +52,7 @@ const ProductCard = () => {
       img: pimg4,
       icon: "SlHome",
       title: "Power Your UK Business with Smarter POS Software",
+      slug: "pos-software",
       desc: "In today’s fast-moving UK retail and hospitality market, a simple cash register is no longer enough. Modern Point of Sale (POS) software has evolved into a strategic business tool that helps you manage",
       btnText: "Details",
     },
@@ -56,6 +61,7 @@ const ProductCard = () => {
       img: pimg5,
       icon: "SlHome",
       title: "All-in-One Hotel Management Software in UK",
+      slug: "hotel-management",
       desc: "Looking for the ultimate hotel management software UK? Orbit Media Solutions helps hoteliers streamline operations, increase revenue, and create exceptional guest experiences. Trusted by..",
       btnText: "Details",
     },
@@ -64,6 +70,7 @@ const ProductCard = () => {
       img: pimg6,
       icon: "SlHome",
       title: "Accounting Software for Growing Businesses",
+      slug: "accountant-software",
       desc: "Take control of your business finances with easy-to-use, cloud-based accounting software designed for UK small businesses, medium enterprises, and self-employed professionals. Automate..",
       btnText: "Details",
     },
@@ -72,6 +79,7 @@ const ProductCard = () => {
       img: pimg7,
       icon: "SlHome",
       title: "Payroll Software for UK Businesses",
+      slug: "payroll",
       desc: "At Orbit Media Solutions, we provide modern, cloud-based payroll software designed specifically for UK employers. Our HMRC-recognised system helps HR and payroll teams run payroll..",
       btnText: "Details",
     },
@@ -80,6 +88,7 @@ const ProductCard = () => {
       img: pimg8,
       icon: "SlHome",
       title: "Education Management Software",
+      slug: "education-management" ,
       desc: "At Orbit Media Solutions, we provide industry-leading education management software designed to streamline school operations, enhance learning, and empower educators. Our solutions are..",
       btnText: "Details",
     },
@@ -88,6 +97,7 @@ const ProductCard = () => {
       img: pimg9,
       icon: "SlHome",
       title: "Law Firm Management Software UK",
+      slug: "law-firm-management",
       desc: "At Orbit Media Solutions, we specialise in providing industry-leading law firm management software built specifically for UK solicitors, legal teams and growing practices. Our powerful, cloud-..",
       btnText: "Details",
     },
@@ -96,6 +106,7 @@ const ProductCard = () => {
       img: pimg10,
       icon: "SlHome",
       title: "Restaurant / Takeaway Management Software UK",
+      slug: "restaurant-management",
       desc: "Manage your restaurant with ease using our complete restaurant management software designed for the UK hospitality industry. Orbit Media Solutions provides one powerful platform that reduce..",
       btnText: "Details",
     },
@@ -104,6 +115,7 @@ const ProductCard = () => {
       img: pimg11,
       icon: "SlHome",
       title: "Pharmacy Management Software",
+       slug: "pharmacy-management",
       desc: "At Orbit Media Solutions, we provide advanced Pharmacy Management Software (PMS) in the UK designed to streamline day-to-day pharmacy operations. From automated prescriptions to..",
       btnText: "Details",
     },
@@ -112,6 +124,7 @@ const ProductCard = () => {
       img: pimg12,
       icon: "SlHome",
       title: "Warehouse Management Software UK",
+      slug:"warehouse-management-software",
       desc: "At Orbit Media Solutions, we provide advanced Warehouse Management Software (WMS) for UK ecommerce, 3PL, logistics and wholesale companies. Our powerful cloud-based WMS helps you..",
       btnText: "Details",
     },
@@ -120,6 +133,7 @@ const ProductCard = () => {
       img: pimg13,
       icon: "SlHome",
       title: "Web Hosting",
+      slug:"hosting-site",
       desc: "Looking for reliable UK web hosting that delivers speed, security and 24/7 support? Orbit Media Solutions provides premium hosting solutions designed for businesses, startups and e-commerce..",
       btnText: "Details",
     },
@@ -198,9 +212,9 @@ const ProductCard = () => {
                         }
                       `}
                 >
-                  <button className="inline-flex items-center gap-2 btn btn-info text-white text-sm px-5 py-2 rounded-full">
+                  <Link to={`/product/${product.slug}`}><button className="inline-flex items-center gap-2 btn btn-info text-white text-sm px-5 py-2 rounded-full">
                     Details <RiArrowRightLine />
-                  </button>
+                  </button></Link>
                 </div>
               </div>
             </div>

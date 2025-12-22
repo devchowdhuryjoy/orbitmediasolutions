@@ -1,14 +1,22 @@
 import React from "react";
+import WebHero from "./WebHero/WebHero";
+import DesignSolution from "./DesignSolution/DesignSolution";
+import WebFeaturedCard from "./WebFeaturedCard/WebFeaturedCard";
+import WebDevelopmentServices from "./WebDevelopmentServices/WebDevelopmentServices";
+import WebSolutions from "./WebSolutions/WebSolutions";
+import WebDarkHero from "./WebDarkHero/WebDarkHero";
+import WebDevelopmentFeatures from "./WebDevelopmentFeatures/WebDevelopmentFeatures";
 
 const WebDesign = () => {
   return (
-    <div className="container mx-auto p-8">
-      WebDesign........ is on processing
-      <span className="loading loading-ring loading-xs"></span>
-      <span className="loading loading-ring loading-sm"></span>
-      <span className="loading loading-ring loading-md"></span>
-      <span className="loading loading-ring loading-lg"></span>
-      <span className="loading loading-ring loading-xl"></span>
+    <div className="">
+      <WebHero/>
+      <DesignSolution/>
+      <WebFeaturedCard/>
+      <WebDevelopmentServices/>
+      <WebSolutions/>
+      <WebDarkHero/>
+      <WebDevelopmentFeatures/>
     </div>
   );
 };
