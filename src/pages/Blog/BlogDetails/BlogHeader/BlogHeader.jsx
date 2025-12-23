@@ -1,30 +1,32 @@
 import React, { useState } from "react";
 import RainbowGradientButton from "../../../Button/RainbowGradientButton";
-import blog1 from "../../../../assets/blog/blog1.png"
+import blog1 from "../../../../assets/blog/blog1.png";
 
 const BlogHeader = () => {
   const [expanded, setExpanded] = useState(false);
+
   return (
-    <div>
-      <div className="bg-white text-[#0b0b0f] py-16 px-4 md:px-10 container mx-auto">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-12">
+    <section className="bg-white text-[#0b0b0f]">
+      <div className="container mx-auto px-4 sm:px-6 md:px-10 py-12 sm:py-14 md:py-16">
+        <div className="flex flex-col-reverse md:flex-row items-center gap-10 md:gap-12">
+          
           {/* Left Content */}
-          <div className="flex-1 text-left">
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
+          <div className="flex-1 text-center md:text-left">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-5">
               Pharmacy Management
-              <br /> Services UK
+              <br className="hidden sm:block" /> Services UK
             </h1>
 
-            <h3 className="text-xl md:text-2xl font-semibold mb-4">
-              The Key to-{" "}
-              <span className="font-normal">
+            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold mb-4">
+              The Key to{" "}
+              <span className="font-normal block sm:inline">
                 Faster, Safer, and Smarter Pharmacy Operations
               </span>
             </h3>
 
             {/* Paragraph */}
             <p
-              className={`text-gray-600 text-lg leading-relaxed mb-6 max-w-2xl text-justify transition-all duration-300 ${
+              className={`text-gray-600 text-base sm:text-lg leading-relaxed mb-6 max-w-2xl mx-auto md:mx-0 transition-all duration-300 ${
                 expanded ? "" : "line-clamp-3"
               }`}
             >
@@ -42,7 +44,7 @@ const BlogHeader = () => {
             {/* Button */}
             <div
               onClick={() => setExpanded(!expanded)}
-              className="inline-block"
+              className="inline-flex justify-center md:justify-start"
             >
               <RainbowGradientButton>
                 {expanded ? "Read Less" : "Read More..."}
@@ -51,18 +53,16 @@ const BlogHeader = () => {
           </div>
 
           {/* Right Image */}
-          <div className="flex-1 flex justify-center md:justify-end">
-            <div className="relative group">
-              <img
-                src={blog1}
-                alt="Pharmacy Software Services"
-                className="w-full max-w-xl rounded-sm shadow-2xl"
-              />
-            </div>
+          <div className="flex-1 flex justify-center md:justify-end w-full">
+            <img
+              src={blog1}
+              alt="Pharmacy Software Services"
+              className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl rounded-md shadow-2xl"
+            />
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
