@@ -1,23 +1,32 @@
 import React from "react";
 
-const FormInput = ({ label, textarea = false, ...props }) => {
+// Reusable Input Component
+const FormInput = ({ label, name, textarea, error, ...props }) => {
   return (
-    <div>
-      <label className="block mb-1 text-sm font-medium text-gray-700">
+    <div className="flex flex-col">
+      <label htmlFor={name} className="mb-2 font-medium text-gray-700">
         {label}
       </label>
-
       {textarea ? (
         <textarea
+          id={name}
+          name={name}
+          className={`border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary transition-colors ${
+            error ? "border-red-500 focus:ring-red-200" : "border-gray-300"
+          }`}
           {...props}
-          className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
         />
       ) : (
         <input
+          id={name}
+          name={name}
+          className={`border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary transition-colors ${
+            error ? "border-red-500 focus:ring-red-200" : "border-gray-300"
+          }`}
           {...props}
-          className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
         />
       )}
+      {error && <span className="text-red-500 text-sm mt-1">{error}</span>}
     </div>
   );
 };

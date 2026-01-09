@@ -1,8 +1,14 @@
 import React from 'react'
 import partner from "../../../assets/partner/partner.avif";
 import RainbowGradientButton from '../../Button/RainbowGradientButton';
+import { useNavigate } from "react-router-dom"; // <- note this
 
 const PartnerHero = () => {
+  const navigate = useNavigate(); // get navigate function
+
+  const handleApplyClick = () => {
+    navigate("/contact"); // programmatic navigation
+  };
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="card bg-base-100 image-full w-full shadow-sm rounded-md overflow-hidden">
@@ -29,7 +35,7 @@ const PartnerHero = () => {
                 </p>
     
                 <div className="card-actions justify-center">
-                  <RainbowGradientButton>Get in Touch</RainbowGradientButton>
+                  <RainbowGradientButton onClick={handleApplyClick} >Get in Touch</RainbowGradientButton>
                 </div>
               </div>
             </div>

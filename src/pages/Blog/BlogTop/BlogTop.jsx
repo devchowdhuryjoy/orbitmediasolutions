@@ -1,83 +1,105 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { Search } from "lucide-react";
-const BlogTop = () => {
-  const dropdowns = [
-    {
-      title: "Products",
-      items: [
-        "ERP",
-        "HR Management Software",
-        "Inventory Management Software",
-        "Accountant Software",
-        "Payroll",
-        "POS",
-        "Hotel Management Software",
-        "Education Management Software",
-        "Law Firm Management Software",
-        "Restaurant / Takeaway Management Software",
-        "Pharmacy Management",
-      ],
-    },
-    {
-      title: "Service",
-      items: [
-        "Web Design And Development",
-        "E-Commerce (Single & Multi Vendor)",
-        "Digital Marketing",
-        "Mobile & Desktop Application",
-        "Custom Software Solution",
-        "News Portal",
-        "Blog Site",
-      ],
-    },
-    {
-      title: "Sort By",
-      items: ["Newest First", "Oldest First"],
-    },
-  ];
+
+const BlogTop = ({ onChange, parentFilters }) => {
+  const [products, setProducts] = useState([]);
+  const [services, setServices] = useState([]);
+
+  // Local filter state mirrors parent
+  const [filters, setFilters] = useState(parentFilters);
+
+  useEffect(() => {
+    const fetchBlogPage = async () => {
+      try {
+        const res = await fetch("https://theorbit.one/api/blog/page");
+        const json = await res.json();
+        setProducts(json.data.itemProducts || []);
+        setServices(json.data.itemService || []);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchBlogPage();
+  }, []);
+
+  const updateFilter = (data) => {
+    const updated = { ...filters, ...data };
+    setFilters(updated);
+    onChange(updated); // send to parent
+  };
+
   return (
-    <div>
-      <div className="container mx-auto flex flex-wrap items-center gap-3">
-        {/* Dropdowns */}
-        {dropdowns.map((dropdown, index) => (
-          <div key={index} className="dropdown dropdown-start">
-            <button className="btn bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 flex items-center gap-1">
-              {dropdown.title}
-              <TiArrowSortedDown />
+    <div className="container mx-auto flex flex-wrap gap-3">
+      {/* Products */}
+      <div className="dropdown">
+        <button className="btn bg-white border">
+          Products <TiArrowSortedDown />
+        </button>
+        <ul className="dropdown-content menu bg-white shadow w-72 p-2">
+          {products.map((item) => (
+            <li key={item.id}>
+              <button
+                onClick={() => updateFilter({ productSlug: item.slug })}
+              >
+                {item.product.product_name}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Services */}
+      <div className="dropdown">
+        <button className="btn bg-white border">
+          Service <TiArrowSortedDown />
+        </button>
+        <ul className="dropdown-content menu bg-white shadow w-72 p-2">
+          {services.map((item) => (
+            <li key={item.id}>
+              <button
+                onClick={() => updateFilter({ serviceSlug: item.slug })}
+              >
+                {item.banner_title}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Sort */}
+      <div className="dropdown">
+        <button className="btn bg-white border">
+          Sort By <TiArrowSortedDown />
+        </button>
+        <ul className="dropdown-content menu bg-white shadow w-56 p-2">
+          <li>
+            <button onClick={() => updateFilter({ sort: "newest" })}>
+              Newest First
             </button>
+          </li>
+          <li>
+            <button onClick={() => updateFilter({ sort: "oldest" })}>
+              Oldest First
+            </button>
+          </li>
+        </ul>
+      </div>
 
-            <ul className="dropdown-content menu bg-white border border-gray-200 rounded-xl z-10 w-64 p-2 shadow-lg">
-              {dropdown.items.map((item, idx) => (
-                <li key={idx}>
-                  <a className="hover:bg-gray-100 rounded-lg">{item}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-
-        {/* Search Bar */}
-        <div className="ml-auto flex items-center h-12 w-full sm:w-auto max-w-md ">
-          <input
-            type="text"
-            placeholder="Search blog posts..."
-            className="h-full w-full px-5 rounded-l-full
-            bg-gray-50 border border-gray-300
-            text-gray-700 placeholder-gray-400
-            outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
-          />
-
-          <button
-            className="h-full px-5 rounded-r-full
-            bg-indigo-600 hover:bg-indigo-700
-            text-white font-medium
-            flex items-center gap-2 transition"
-          >
-            <Search size={18} />
-            <span className="hidden sm:inline">Search</span>
-          </button>
-        </div>
+      {/* Search */}
+      <div className="ml-auto flex h-12 max-w-md w-full">
+        <input
+          className="w-full px-4 border rounded-l-full"
+          placeholder="Search blogs..."
+          value={filters.search}
+          onChange={(e) => updateFilter({ search: e.target.value })}
+        />
+        <button
+          className="px-4 bg-indigo-600 text-white rounded-r-full"
+          onClick={() => onChange(filters)}
+        >
+          <Search size={18} />
+        </button>
       </div>
     </div>
   );

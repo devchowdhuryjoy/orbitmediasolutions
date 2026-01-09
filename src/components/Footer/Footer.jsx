@@ -1,39 +1,85 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
-import logo from '../../assets/logo-w.png';
 import { Link } from "react-router";
+
+/**
+ * Convert any Google Maps input to an iframe-safe embed URL
+ * Backend agnostic (place / embed / short link safe)
+ */
+const getGoogleMapEmbedUrl = (mapUrl, address) => {
+  // Backend already sends iframe-friendly embed URL
+  if (mapUrl && mapUrl.includes("/maps/embed")) {
+    return mapUrl;
+  }
+
+  // Otherwise generate from address
+  if (address) {
+    return `https://www.google.com/maps?q=${encodeURIComponent(
+      address
+    )}&output=embed`;
+  }
+
+  return null;
+};
+
 const Footer = () => {
+  const [setting, setSetting] = useState(null);
+
+  useEffect(() => {
+    fetch("https://theorbit.one/api/contact")
+      .then((res) => res.json())
+      .then((data) => setSetting(data?.data?.setting))
+      .catch((err) => console.error("Footer API error:", err));
+  }, []);
+
+  if (!setting) return null;
+
+  const {
+    logo,
+    director_name,
+    uk_address,
+    contact_phone,
+    contact_email,
+    footer_short,
+    google_map,
+  } = setting;
+
+  // Generate safe map URL
+  const mapSrc = getGoogleMapEmbedUrl(google_map, uk_address);
+
   return (
-    <footer className="bg-white ">
+    <footer className="bg-white">
       <div className="container mx-auto px-6 py-12 grid md:grid-cols-3 gap-10">
 
-        {/* Left Side */}
+        {/* Left: Logo + Description + Map */}
         <div>
           <img
-            src={logo}
+            src={
+              logo
+                ? `https://theorbit.one/${logo.replace(/^\/+/, "")}` // Safe join
+                : "/logo-fallback.png"
+            }
             alt="Orbit Media Solutions"
-            className="w-32 mb-4"
+            className="w-32 mb-4 object-contain"
+            loading="lazy"
+            onError={(e) => (e.currentTarget.src = "/logo-fallback.png")}
           />
+
           <p className="text-gray-600 leading-relaxed">
-            Orbit Media Solutions empowers businesses with smart digital
-            solutions from web design, apps, ERP & CRM to SEO, digital marketing
-            & creative media. Since 2018, we’ve been helping brands innovate,
-            grow & succeed. Let’s take your business to the next level!
+            {footer_short}
           </p>
 
-          {/* Map */}
-          <div className="mt-6 rounded-md overflow-hidden">
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2479.9292884697293!2d0.007239075859600744!3d51.56952980616355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a76511dcd7c1%3A0x9a7f1d1296152e2a!2sKirkdale%20House!5e0!3m2!1sen!2sbd!4v1765528027005!5m2!1sen!2sbd"
-    width="100%"
-    height="200"
-    style={{ border: 0 }}
-    allowFullScreen=""
-    loading="lazy"
-    referrerPolicy="no-referrer-when-downgrade"
-  ></iframe>
-</div>
-
+          {mapSrc && (
+            <div className="mt-6 rounded-md overflow-hidden border border-gray-100">
+              <iframe
+                src={mapSrc}
+                className="w-full h-56 border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Office Location"
+              />
+            </div>
+          )}
         </div>
 
         {/* Quick Links */}
@@ -49,43 +95,40 @@ const Footer = () => {
             </div>
 
             <div className="space-y-2">
-              <Link to="/services" className="hover:text-violet-500 block">All Services</Link>
-              <Link to="/products" className="hover:text-violet-500 block">All Products</Link>
-              <Link to="/partner" className="hover:text-violet-500 block">Partner</Link>
+              <Link to="/all-service" className="hover:text-violet-500 block">All Services</Link>
+              <Link to="/all-products" className="hover:text-violet-500 block">All Products</Link>
+              <Link to="/partners" className="hover:text-violet-500 block">Partner</Link>
             </div>
           </div>
         </div>
 
-        {/* Contact */}
+        {/* Contact Info */}
         <div>
           <h2 className="font-semibold text-xl mb-4">Contact</h2>
 
           <p className="text-gray-700 mb-2">
-            <span className="font-semibold">Director:</span> MD. Shamsul Alam
+            <span className="font-semibold">Director:</span> {director_name}
           </p>
 
           <div className="space-y-4 text-gray-700">
             <p className="flex items-start gap-3">
               <FaMapMarkerAlt className="text-violet-500 mt-1" />
-              Head Office: Kirkdale House, 7 Kirkdale Road, Leytonstone,  
-              E11 1HP, London, UK
+              {uk_address}
             </p>
 
             <p className="flex items-center gap-3">
               <FaPhoneAlt className="text-violet-500" />
-              00447935390848
+              {contact_phone}
             </p>
 
             <p className="flex items-center gap-3">
               <FaEnvelope className="text-violet-500" />
-              info@theorbit.one
+              {contact_email}
             </p>
           </div>
         </div>
 
       </div>
-
-     
     </footer>
   );
 };

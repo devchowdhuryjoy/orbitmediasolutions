@@ -1,8 +1,14 @@
 import React from "react";
 import cHero from "../../../assets/contact/contact.jfif";
-import { Link } from "react-router";
+import { useNavigate } from "react-router-dom"; // <- note this
 
 const ContactHero2 = () => {
+  const navigate = useNavigate(); // get navigate function
+
+  const handleApplyClick = () => {
+    navigate("/career"); // programmatic navigation
+  };
+
   return (
     <div
       className="hero min-h-[45vh] sm:min-h-[55vh] md:min-h-[70vh] lg:min-h-[80vh]"
@@ -25,10 +31,10 @@ const ContactHero2 = () => {
             questions or inquiries.
           </p>
 
-          {/* Optional Button */}
-          <Link to="/career">
-            <button className="btn btn-primary">Apply Now</button>
-          </Link>
+          {/* Button with programmatic navigation */}
+          <button onClick={handleApplyClick} className="btn btn-primary">
+            Apply Now
+          </button>
         </div>
       </div>
     </div>

@@ -94,19 +94,19 @@ const LastHeader = () => {
   /* ---------- Products Dropdown Data ---------- */
   const productsDropdown = [
     { name: "ERP", slug: "erp-software" },
-    { name: "HR Management Software", slug: "hr-management" },
-    { name: "Inventory Management Software", slug: "inventory-management" },
+    { name: "HR Management Software", slug: "hr-management-software" },
+    { name: "Inventory Management Software", slug: "inventory-management-software" },
     { name: "Accountant Software", slug: "accountant-software" },
-    { name: "Payroll", slug: "payroll" },
+    { name: "Payroll", slug: "payroll-software" },
     { name: "POS", slug: "pos-software" },
-    { name: "Hotel Management Software", slug: "hotel-management" },
-    { name: "Education Management Software", slug: "education-management" },
-    { name: "Law Firm Management Software", slug: "law-firm-management" },
+    { name: "Hotel Management Software", slug: "hotel-management-software" },
+    { name: "Education Management Software", slug: "education-management-software" },
+    { name: "Law Firm Management Software", slug: "law-firm-management-software" },
     {
       name: "Restaurant / Takeaway Management Software",
-      slug: "restaurant-management",
+      slug: "restaurant-takeaway-management-software",
     },
-    { name: "Pharmacy Management", slug: "pharmacy-management" },
+    { name: "Pharmacy Management", slug: "pharmacy-management-software" },
   ];
   /* ---------- Service Dropdown Data ---------- */
   const servicesDropdown = [

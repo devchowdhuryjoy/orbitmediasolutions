@@ -1,76 +1,29 @@
-import React, { useState } from "react";
-import simg1 from "../../../assets/images/s1.webp";
-import simg2 from "../../../assets/images/s2.jpeg";
-import simg3 from "../../../assets/images/s3.webp";
-import simg4 from "../../../assets/images/s4.webp";
-import simg5 from "../../../assets/images/s5.jpg";
-import simg6 from "../../../assets/images/s6.webp";
-import simg7 from "../../../assets/images/s7.webp";
+import React, { useContext, useState } from "react";
+// import simg1 from "../../../assets/images/s1.webp";
+// import simg2 from "../../../assets/images/s2.jpeg";
+// import simg3 from "../../../assets/images/s3.webp";
+// import simg4 from "../../../assets/images/s4.webp";
+// import simg5 from "../../../assets/images/s5.jpg";
+// import simg6 from "../../../assets/images/s6.webp";
+// import simg7 from "../../../assets/images/s7.webp";
 
 import { SlHome } from "react-icons/sl";
 import { RiArrowRightLine } from "react-icons/ri";
 import RainbowGradientButton from "../../Button/RainbowGradientButton";
 import { Link } from "react-router";
+import { ServiceContext } from "../../../context/ServiceContext";
 
 const ServiceCard = () => {
   const [activeId, setActiveId] = useState(null);
-
-  const servicesData = [
-    {
-      id: 1,
-      img: simg1,
-      title: "Web Design And Development Solutions",
-      slug: "web-design-development",
-      desc: "At Orbit Media Solutions, we specialize in designing and developing bespoke, high-performance websites and web applications that not only engage users but also deliver seamless experiences across all.",
-    },
-    {
-      id: 2,
-      img: simg2,
-      title: "E-Commerce Website Development",
-      slug: "e-commerce-single-multi-vendor",
-      desc: "Whether you want a single vendor online store or a full multi-vendor marketplace like Amazon, Etsy, or eBay, Orbit Media Solutions helps UK businesses launch high-performance e-commerce platforms.",
-    },
-    {
-      id: 3,
-      img: simg3,
-      title: "Digital Marketing",
-      slug: "digital-marketing",
-      desc: "Want more leads, higher conversions, and increased revenue? That’s exactly what Orbit Media Solutions delivers.",
-    },
-    {
-      id: 4,
-      img: simg4,
-      title: "News Portal Development",
-      slug: "news-portal",
-      desc: "We build fast, secure and engaging news portal websites for digital publishers and media organisations.",
-    },
-    {
-      id: 5,
-      img: simg5,
-      title: "Mobile & Desktop App Development",
-      slug: "mobile-desktop-application",
-      desc: "Powerful, secure, and scalable mobile and desktop applications for modern businesses.",
-    },
-    {
-      id: 6,
-      img: simg6,
-      title: "Custom Software Development Services",
-      slug: "customed-software-solution",
-      desc: "Custom software solutions that streamline operations and drive growth.",
-    },
-    {
-      id: 7,
-      img: simg7,
-      title: "Blog Site Development",
-      slug: "blog-site",
-      desc: "High-performance blog websites that rank on Google and convert readers.",
-    },
-  ];
+  const { services, loading } = useContext(ServiceContext);
+  if (loading) {
+    return <p className="text-center text-white">Loading products...</p>;
+  }
 
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
-        {servicesData.map((service) => {
+        {services.map((service) => {
           const isActive = activeId === service.id;
 
           return (
@@ -89,8 +42,8 @@ const ServiceCard = () => {
             >
               {/* Image */}
               <img
-                src={service.img}
-                alt={service.title}
+                src={`https://theorbit.one/${service.service_image}`}
+                alt={service.banner_title}
                 className="w-full h-40 object-cover"
               />
 
@@ -112,7 +65,7 @@ const ServiceCard = () => {
 
                 {/* Title */}
                 <h2 className="text-center text-white text-base md:text-md font-semibold mb-2">
-                  {service.title}
+                  {service.banner_title}
                 </h2>
 
                 {/* Description */}
@@ -127,7 +80,7 @@ const ServiceCard = () => {
                     }
                   `}
                 >
-                  {service.desc}
+                  {service.banner_description}
                 </p>
 
                 {/* Button */}
@@ -154,7 +107,10 @@ const ServiceCard = () => {
       </div>
 
       <div className="flex justify-center mt-8">
-        <RainbowGradientButton>View All Products</RainbowGradientButton>
+        <Link to="/all-service">
+          {" "}
+          <RainbowGradientButton>View All Services</RainbowGradientButton>
+        </Link>
       </div>
     </>
   );

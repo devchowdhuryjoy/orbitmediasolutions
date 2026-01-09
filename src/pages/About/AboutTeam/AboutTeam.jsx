@@ -1,50 +1,35 @@
-import React from "react";
-import sir from "../../../assets/images/Team/ceo_sir.png"
-import mam from "../../../assets/images/Team/mam.png"
-import IftyVai from "../../../assets/images/Team/IftyAhamed.jpg"
-import ImranUddinVai from "../../../assets/images/Team/ImranUddinChowdhury.jpg"
-import AbbdullahVai from "../../../assets/images/Team/AbbdullahAlSamad.jpg"
+import React, { useEffect, useState } from "react";
 
 const AboutTeam = () => {
-    const teamData = [
-  {
-    id: 1,
-    name: "Shamsul Alam",
-    position: "CEO",
-    image: sir
-  },
-  {
-    id: 2,
-    name: "Zohura Zannat",
-    position: "Manager",
-    image: mam
-  },
-  {
-    id: 3,
-    name: "Ifty Ahamed",
-    position: "Digital Marketing Executive",
-    image: IftyVai
-  },
-  {
-    id: 4,
-    name: "Abdullah Al Samad",
-    position: "Web Developer",
-    image: AbbdullahVai
-  },
-  {
-    id: 5,
-    name: "Imran Uddin Chowdhury",
-    position: "Web Developer",
-    image: ImranUddinVai
+  const [teamData, setTeamData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("https://theorbit.one/api/about")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.success) {
+          setTeamData(data.data.teams || []);
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Team API Error:", error);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <p className="text-center py-10">Loading team...</p>;
   }
-];
+
   return (
-    <>
     <div className="mt-10">
       <h2 className="text-5xl text-center">Meet Our Team</h2>
-      <p className="text-xs text-center p-4 text-gray-500">
+      <p className="text-xs text-center p-4 text-black">
         The talented people behind Orbit
       </p>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {teamData.map((team) => (
           <div
@@ -55,20 +40,22 @@ const AboutTeam = () => {
           >
             <figure className="flex justify-center">
               <img
-                src={team.image}
+                src={`https://theorbit.one/${team.image}`}
                 alt={team.name}
                 className="rounded-full w-36 h-36 object-cover border-4 border-indigo-400"
               />
             </figure>
+
             <div className="card-body items-center text-center">
-              <h2 className="text-lg font-bold mt-4 whitespace-nowrap">{team.name}</h2>
+              <h2 className="text-lg font-bold mt-4 whitespace-nowrap">
+                {team.name}
+              </h2>
               <p className="text-gray-600">{team.position}</p>
             </div>
           </div>
         ))}
       </div>
     </div>
-    </>
   );
 };
 
