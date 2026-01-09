@@ -7,6 +7,7 @@ import WebDevelopmentServices from "./WebDevelopmentServices/WebDevelopmentServi
 import WebSolutions from "./WebSolutions/WebSolutions";
 import ServiceDetailDarkHero from "./ServiceDetailDarkHero/ServiceDetailDarkHero";
 import WebDevelopmentFeatures from "./WebDevelopmentFeatures/WebDevelopmentFeatures";
+import Faq from "./Faq/Faq";
 
 const ServiceDetailDesign = () => {
   const { sys } = useParams();
@@ -56,6 +57,7 @@ const ServiceDetailDesign = () => {
       <ServiceDetailDarkHero serviceData={serviceData} />
       {/* ServiceDetailDarkHero fix dynamic korte hobe ei use effect onujai */}
       <WebDevelopmentFeatures serviceData={serviceData}/>
+      <Faq/>
     </div>
   );
 };
