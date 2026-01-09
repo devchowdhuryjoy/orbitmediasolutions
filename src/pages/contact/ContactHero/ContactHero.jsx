@@ -4,7 +4,7 @@ import cHero from "../../../assets/contact/hero.jpg";
 const ContactHero = () => {
   return (
     <div
-      className="hero min-h-[45vh] sm:min-h-[55vh] md:min-h-[70vh] lg:min-h-[80vh]"
+      className="hero min-h-[45vh] sm:min-h-[55vh] md:min-h-[70vh] lg:min-h-[80vh] max-w-full"
       style={{
         backgroundImage: `url(${cHero})`,
       }}

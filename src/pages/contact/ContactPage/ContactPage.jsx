@@ -9,7 +9,7 @@ const ContactPage = () => {
   return (
     <div className="">
       <ContactHero />
-      <div className="max-w-7xl mx-auto px-4 py-16 grid lg:grid-cols-3 gap-8 items-stretch">
+      <div className="container mx-auto px-4 py-16 grid lg:grid-cols-3 gap-8 items-stretch">
         {/* Form */}
         <div className="lg:col-span-2 h-full">
           <ContactForm />
@@ -19,7 +19,7 @@ const ContactPage = () => {
         <div className="h-full">
           <OfficeInfo />
         </div>
-      </div>
+      </div>  
       <ContactHero2 />
     </div>
   );

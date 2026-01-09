@@ -11,7 +11,7 @@ const ContactHero2 = () => {
 
   return (
     <div
-      className="hero min-h-[45vh] sm:min-h-[55vh] md:min-h-[70vh] lg:min-h-[80vh]"
+      className="hero min-h-[45vh] sm:min-h-[55vh] md:min-h-[70vh] lg:min-h-[80vh] max-w-full"
       style={{
         backgroundImage: `url(${cHero})`,
       }}
@@ -32,7 +32,7 @@ const ContactHero2 = () => {
           </p>
 
           {/* Button with programmatic navigation */}
-          <button onClick={handleApplyClick} className="btn btn-primary">
+          <button onClick={handleApplyClick} className="btn btn-primary text-green-400">
             Apply Now
           </button>
         </div>
